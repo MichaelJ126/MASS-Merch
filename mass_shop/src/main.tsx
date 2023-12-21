@@ -6,8 +6,7 @@ import { FirebaseAppProvider } from 'reactfire';
 import 'firebase/auth';
 
 
-// internal imports 
-import { Home, Shop, Cart, Auth } from './components'; // add Auth
+import { Home, Shop, Cart, Auth } from './components'; 
 import './index.css';
 import { theme } from './Theme/themes'; 
 import { firebaseConfig } from './fireBaseConfig';

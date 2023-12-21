@@ -1,152 +1,82 @@
 
 import axios from 'axios';
+let accessToken = "307823aa124b9ebab1800914be080e71"
+let userId = localStorage.getItem('uuid')
 
-let accessToken = "f57e9430f7872871a4ebcd13da87b1f4"
-// let userId = localStorage.getItem('uuid') 
+async function getShop() { 
 
+let data = JSON.stringify({
+  query: `{
+  products(first: 250) {
+    edges {
+      node {
+        id
+        title
+        handle
+        descriptionHtml
+        images(first: 1) {
+          edges {
+            node {
+              src
+              altText
+            }
+          }
+        }
+        variants(first: 1) {
+          edges {
+            node {
+              id
+              title
+              priceV2 {  
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`,
+  variables: {}
+});
 
-// export const serverCalls = {
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: 'https://mind-of-mass.myshopify.com/api/2023-10/graphql.json',
+  headers: { 
+    'Authorization': 'Bearer 307823aa124b9ebab1800914be080e71', 
+    'Content-Type': 'application/json, application/json', 
+    'X-Shopify-Storefront-Access-Token': '307823aa124b9ebab1800914be080e71'
+  },
+  data : data
+};
 
-//     getShop: async () => {
-       
-//         const response = await fetch(`https://rangers134-shopas.onrender.com/api/shop`, {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type' : 'application/json',
-//                 'Authorization' : `Bearer ${accessToken}`
-//             }
-//         });
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
 
-//         if (!response.ok) {
-//             throw new Error('Failed to fetch data'), response.status 
-//         }
+  return JSON.stringify(response.data);
+})
+.catch((error) => {
+  console.log(error);
 
-//         return await response.json()
+});}
 
-//     },
-//     getOrder: async () => {
-        
-//         const response = await fetch(`https://rangers134-shopas.onrender.com/api/order/${userId}`, {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type' : 'application/json',
-//                 'Authorization' : `Bearer ${accessToken}`
-//             }
-//         });
-
-//         if (!response.ok) {
-//             throw new Error('Failed to fetch data'), response.status 
-//         }
-
-//         return await response.json()
-
-//     },
-//     createOrder: async (data: any) => { 
-
-//         const response = await fetch(`https://rangers134-shopas.onrender.com/api/order/create/${userId}`, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type' : 'application/json',
-//                 'Authorization' : `Bearer ${accessToken}`
-//             },
-//             body: JSON.stringify(data) 
-//         });
-
-//         if (!response.ok) {
-//             throw new Error('Failed to create data'), response.status 
-//         }
-
-//         return await response.json()
-
-//     },
-//     updateData: async (orderId: string, data: any) => { 
-       
-//         const response = await fetch(`https://rangers134-shopas.onrender.com/api/order/update/${orderId}`, {
-//             method: 'PUT',
-//             headers: {
-//                 'Content-Type' : 'application/json',
-//                 'Authorization' : `Bearer ${accessToken}`
-//             },
-//             body: JSON.stringify(data) 
-//         });
-
-//         if (!response.ok) {
-//             throw new Error('Failed to update data'), response.status 
-//         }
-
-//         return await response.json()
-
-//     },
-//     deleteOrder: async (orderId: string, data: any) => {
-       
-//         const response = await fetch(`https://rangers134-shopas.onrender.com/api/order/delete/${orderId}`, {
-//             method: 'DELETE',
-//             headers: {
-//                 'Content-Type' : 'application/json',
-//                 'Authorization' : `Bearer ${accessToken}`
-//             },
-//             body: JSON.stringify(data)
-//         });
-
-//         if (!response.ok) {
-//             throw new Error('Failed to delete data'), response.status 
-//         }
-
-//         return await response.json()
-
-//     }
-// }
-
-// curl -X POST \
-//   https://{mindOfMass}.myshopify.com/admin/api/2023-10/graphql.json \
-//   -H 'Content-Type: application/json' \
-//   -H 'X-Shopify-Access-Token: {f57e9430f7872871a4ebcd13da87b1f4}' \
-//   -d '{
-//     "query": "query {
-//       products(first: 5) {
-//         edges {
-//           node {
-//             id
-//             handle
-//           }
-//         }
-//         pageInfo {
-//           hasNextPage
-//         }
-//       }
-//     }"
-//   }
-
-async function getShop() {
-
-const apiKey = "bb1a42766a89e0156c1bb7c5df64e14b" 
-const password = "a075de90da03791839767ca5a212f581" 
-
-const URL = `https://${apiKey}:${password}@mind-of-mass.myshopify.com/admin/api/2023-01/products.json`
-
-
-    try {
-        const response = await axios.get(URL);
-        console.log(response.data)
-    } catch (error) {console.error("error fetching products", error)}
-
-}   
-
-// getShop: async () => {
-       
-    //         const response = await fetch(`https://rangers134-shopas.onrender.com/api/shop`, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type' : 'application/json',
-    //                 'Authorization' : `Bearer ${accessToken}`
-    //             }
-    //         });
-    
-    //         if (!response.ok) {
-    //             throw new Error('Failed to fetch data'), response.status 
-    //         }
-    
-    //         return await response.json()
     export {
         getShop
     }
+
+   // const apiKey = "bb1a42766a89e0156c1bb7c5df64e14b" 
+// const password = "a075de90da03791839767ca5a212f581" 
+
+// const URL = `https://mind-of-mass.myshopify.com/api/2023-10/graphql.json`
+
+
+//     try {
+//         const response = await axios.get(URL);
+//         console.log(response.data)
+//     } catch (error) {console.error("error fetching products", error)}
+
+// }  

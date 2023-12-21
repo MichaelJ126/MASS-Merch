@@ -280,11 +280,7 @@ export const Auth = (props:Props) => {
                     <Typography variant='h2' sx={{color: 'white'}}>
                         {props.title}
                     </Typography>
-                    <br />
-                    <Typography variant='h5'>
-                        Track your shops items for free!
-                    </Typography>
-                    <br />
+                    
                     <GoogleButton open={open} onClick={() => setOpen(false)} />
                     <Divider variant = 'fullWidth' color = 'white' />
                     <br />

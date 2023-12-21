@@ -21,8 +21,6 @@ import InfoIcon from '@mui/icons-material/Info';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { getDatabase, ref, push } from 'firebase/database'; 
 
-
-// internal imports
 import { useGetShop, ShopProps } from './../customHooks';
 import { NavBar, InputText } from '../sharedComponents';
 import { theme } from '../../Theme/themes';
@@ -92,6 +90,7 @@ export const shopStyles = {
         color: "white", 
         marginTop: '100px'
     }
+    
 
 }
 
@@ -128,7 +127,7 @@ const AddToCart = (cart: CartProps ) => {
 
         
         push(cartRef, myCart)
-        .then((newCartRef) => {
+        .then(() => {
             setMessage(`Successfully added item ${myCart.name} to Cart`)
             setMessageType('success')
             setOpen(true)

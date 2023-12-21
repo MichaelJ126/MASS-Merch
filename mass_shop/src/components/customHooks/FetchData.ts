@@ -1,6 +1,6 @@
 import * as _React from 'react';
 import { useState, useEffect } from 'react'; 
-// import { serverCalls } from '../../api';
+// import { serverCalls } from '../api';
 
 
 export interface ShopProps {

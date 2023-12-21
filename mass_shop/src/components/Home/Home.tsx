@@ -44,6 +44,7 @@ export const Home = (props: Props) => {
         <Root>
             <NavBar />
             <Main>
+               
                 <MainText>
 										
                     <Typography variant='h3'> { props.title }</Typography>

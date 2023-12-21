@@ -22,7 +22,6 @@ import { NavBar } from '../sharedComponents';
 import { theme } from '../../Theme/themes';
 import { ShopProps } from './../customHooks';
 import { shopStyles } from '../Shop';
-// import { serverCalls } from '../../api';
 import { MessageType } from '../Auth';
 
 
